@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     const inputFields = document.querySelectorAll('.data-input');
 
     // Функция для загрузки данных из Google Sheets с кешированием
-    async function fetchDataWithCache(sheetName = 'Mono-Abel') { // Добавили параметр sheetName
+    async function fetchDataWithCache(sheetName = 'Mako') { // Добавили параметр sheetName
         let cachedData = localStorage.getItem(`cachedData_${sheetName}`);
         let cachedTime = localStorage.getItem(`cachedTime_${sheetName}`);
 
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     // Функция для отображения данных на странице
-    async function renderData(sheetName = 'Mono-Abel') { // Добавили параметр sheetName
+    async function renderData(sheetName = 'Mako') { // Добавили параметр sheetName
         const data = await fetchDataWithCache(sheetName);
         const tableBody = document.querySelector('#dataTable tbody');
 
@@ -63,20 +63,20 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     // Инициализация загрузки данных и установка интервала сохранения
-    await renderData('Mono-Abel'); // Пример использования с листом по умолчанию
+    await renderData('Mako'); // Пример использования с листом по умолчанию
 
     // Устанавливаем обработчики событий для каждого поля ввода
     inputFields.forEach((input) => {
         input.addEventListener('input', async function() {
             const column = input.getAttribute('data-column');
             const row = input.getAttribute('data-row');
-            await saveData(input.value, column, row, 'Mono-Abel'); // Пример использования
+            await saveData(input.value, column, row, 'Mako'); // Пример использования
         });
     });
 });
 
 // Функция для сохранения данных
-async function saveData(value, column, row, sheetName = 'Mono-Abel') { // Добавили параметр sheetName
+async function saveData(value, column, row, sheetName = 'Mako') { // Добавили параметр sheetName
     const url = 'https://script.google.com/macros/s/AKfycbyAXgt-Q1wikBmbkxVUJ-oqKlG4sIXcVMUt40M2GYx4y_s2b5fFvT0V0LaCXn1sSfPwBA/exec';
     const params = new URLSearchParams({
         column: column,
